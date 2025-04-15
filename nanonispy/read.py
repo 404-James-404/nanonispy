@@ -33,7 +33,7 @@ class NanonisFile:
     header_raw : str
         Unproccessed header information.
     """
-
+    
     def __init__(self, fname):
         _data_format = nanonis_format_dict
         self.datadir, self.basename = os.path.split(fname)
@@ -637,7 +637,7 @@ def _parse_sxm_header(header_raw):
         else:
             header_dict[key] = float(header_dict[key]) #changed to float
     for key in entries_to_be_inted:
-        header_dict[key] = np.asarray(header_dict[key], dtype=np.int)
+        header_dict[key] = np.asarray(header_dict[key], dtype=int)
 
     return header_dict
 
