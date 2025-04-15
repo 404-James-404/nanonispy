@@ -493,7 +493,7 @@ def _parse_3ds_header(header_raw, header_override):
         raw_dict.pop('Grid dim')
 
         # grid frame center position, size, angle. Assumes len(raw_dict['Grid settings']) = 4
-        header_dict['pos_xy'] = [float(val) for val in raw_dict['Grid settings'][:2]]
+        header_dict['pos_xy'] = [float(val) for val in raw_dict['Grid settings'][:2]] #changed to float from np.float
         header_dict['size_xy'] = [float(val) for val in raw_dict['Grid settings'][2:4]]
         header_dict['angle'] = float(raw_dict['Grid settings'][4])
         raw_dict.pop('Grid settings')
@@ -633,9 +633,9 @@ def _parse_sxm_header(header_raw):
 
     for key in entries_to_be_floated:
         if isinstance(header_dict[key], list):
-            header_dict[key] = np.asarray(header_dict[key], dtype=np.float)
+            header_dict[key] = np.asarray(header_dict[key], dtype=float) #changed to float
         else:
-            header_dict[key] = np.float(header_dict[key])
+            header_dict[key] = float(header_dict[key]) #changed to float
     for key in entries_to_be_inted:
         header_dict[key] = np.asarray(header_dict[key], dtype=np.int)
 
